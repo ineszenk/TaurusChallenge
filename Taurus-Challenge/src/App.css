@@ -1,0 +1,49 @@
+/* .App {
+ color: white
+} */
+
+/* .App-Sider {
+  color: red
+} */
+
+img#taurus_logo {
+  height: 100px;
+  width: 200px;
+  margin-bottom: 50px
+}
+
+.App-Header h1 {
+  color:white
+}
+
+.App-Sider{
+  text-align: center
+
+}
+
+.App-Sider h5 {
+  text-align: center;
+  align-content: center;
+  color:grey
+
+} 
+
+.header {
+  min-height: 100vh;
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
