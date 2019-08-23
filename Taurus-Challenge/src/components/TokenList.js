@@ -1,6 +1,7 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 import TokenTable from './TokenTable'
-import './App.css';
+import '../App.css';
 import 'antd/dist/antd.css'
 import 'antd/lib/button/style'
 import { Layout, Button, Col, Row, Form, Input, Icon, Table } from 'antd'
@@ -9,8 +10,18 @@ const { Header, Footer, Sider, Content } = Layout
 
 class TokenList extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.issueToken = this.issueToken.bind(this)
+  }
+
+  issueToken() {
+    this.props.history.push("/IssueToken")
+  }
+
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <header className="header">
@@ -30,7 +41,7 @@ class TokenList extends React.Component {
                     <Icon type="search" />
                     Contract name or address or ticker
                   </Form>
-                  <Button type="primary" className="IssueToken">Issue Token</Button>
+                  <Button type="primary" className="IssueToken" onClick={this.issueToken}>Issue Token</Button>
                   <Button type="primary" icon="download" className="Export">Export To CSV</Button>
                 </Content>
                 <TokenTable />

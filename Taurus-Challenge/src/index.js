@@ -1,10 +1,11 @@
 import React from 'react';
+import { Router } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import './index.css';
-import TokenList from './TokenList';
+import Main from './main';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<TokenList />, document.getElementById('root'));
+ReactDOM.render(<Main />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

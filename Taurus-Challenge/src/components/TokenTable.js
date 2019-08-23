@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 import 'antd/dist/antd.css'
 import 'antd/lib/button/style'
 import { Layout, Button, Col, Row, Form, Input, Icon, Table } from 'antd'
