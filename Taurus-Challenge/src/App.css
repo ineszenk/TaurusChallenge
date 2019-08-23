@@ -6,6 +6,7 @@
   color: red
 } */
 
+
 img#taurus_logo {
   height: 100px;
   width: 200px;
@@ -13,7 +14,13 @@ img#taurus_logo {
 }
 
 .App-Header h1 {
-  color:white
+  color:white;	
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    
 }
 
 .App-Sider{
