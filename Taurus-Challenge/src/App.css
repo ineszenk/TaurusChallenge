@@ -1,10 +1,11 @@
-/* .App {
- color: white
-} */
 
-/* .App-Sider {
-  color: red
-} */
+.ant-advanced-search-form {
+
+  background: #b6b1b1be;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+
+}
 
 
 img#taurus_logo {
@@ -20,6 +21,7 @@ img#taurus_logo {
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 1px;
+    margin-left: -30px
     
 }
 
@@ -35,10 +37,39 @@ img#taurus_logo {
 
 } 
 
+.App-Content form {
+  color:white;
+  margin-left: 20px;
+  /* margin-right:25%; */
+  margin-top:10px;
+  height:30px;
+  width:65%
+}
+
+.App-Content {
+  display: flex;
+}
+
+button.ant-btn-primary.IssueToken {
+  background-color: rgb(14, 204, 109);
+  border-color: white;
+  margin-top: 10px
+}
+
+button.ant-btn-primary.Export{
+  background-color:grey;
+  border-color: white;
+  margin-top: 10px
+}
+
+button.ant-btn-primary:hover  {
+ background-color: grey;
+ border: white
+}
+
 .header {
   min-height: 100vh;
   display: flex;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
