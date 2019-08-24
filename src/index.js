@@ -1,5 +1,4 @@
 import React from 'react';
-import { Router } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import './index.css';
 import Main from './main';

@@ -2,20 +2,9 @@ import React from 'react';
 import '../App.css';
 import 'antd/dist/antd.css'
 import 'antd/lib/button/style'
-import { Layout, Button, Col, Row, Form, Input, Icon, Table } from 'antd'
-const { Header, Footer, Sider, Content } = Layout
+import { Table } from 'antd'
 
-const dataSource = [
-    {
-        key: '1',
-        tokenName: 'TTism',
-        tokenTicker: 'TTT',
-        totalSupply: 100000,
-        creationDate: '17 mai 2019',
-        issuerName: 'Taurus Group SA',
-        template: 'ERC20'
-    }
-];
+const dataSource = []
 
 const columns = [
     {
@@ -50,13 +39,26 @@ const columns = [
     }
 ];
 
+let creationDate = new Date().toLocaleDateString()
+
+
 class TokenTable extends React.Component {
+
+    async componentDidMount() {
+        const tokenName = localStorage.getItem('TokenName')
+        const tokenTicker = localStorage.getItem('TokenTicker')
+        const totalSupply = localStorage.getItem('TotalSupply')
+        const issuerName = localStorage.getItem('IssuerName')
+        const template = localStorage.getItem('Template')
+
+        await dataSource.push({ tokenName, tokenTicker, totalSupply, issuerName, creationDate, template })
+    }
 
 
     render() {
         return (
             <div>
-                <Table dataSource={dataSource} columns={columns} />
+                <Table rowKey={dataSource => dataSource.uid} dataSource={dataSource} columns={columns} />
             </div>
         );
     }
