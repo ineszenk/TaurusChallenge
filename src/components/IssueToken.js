@@ -6,6 +6,10 @@ import '../App.css';
 import 'antd/dist/antd.css'
 import 'antd/lib/button/style'
 import { Form, Select, Input, Button, InputNumber } from 'antd';
+import { connect } from "react-redux";
+import {
+    DataToLocalStorage
+} from "../reducers/dataSource";
 
 const { Option } = Select;
 
@@ -27,28 +31,20 @@ class IssueToken extends React.Component {
             .catch(console.log)
     }
 
-
     handleSubmit = e => {
         console.log(this.props.form)
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                const { TokenName, TokenTicker, TotalSupply, IssuerName, Template, Country } = values;
-                localStorage.setItem('TokenName', TokenName);
-                localStorage.setItem('TokenTicker', TokenTicker)
-                localStorage.setItem('TotalSupply', TotalSupply)
-                localStorage.setItem('IssuerName', IssuerName)
-                localStorage.setItem('Template', Template)
-                localStorage.setItem('Country', Country)
-
+                this.props.DataToLocalStorage(values)
                 this.props.history.push("/TokenList")
             }
         });
 
     };
 
-    handleSelectChange = (value) => {
+    handleSelectChange = () => {
         this.props.form.setFieldsValue({});
     };
 
@@ -112,5 +108,22 @@ class IssueToken extends React.Component {
     }
 }
 
+const mapState = state => {
+    console.log(state, 'state');
+    return {
+        dataSource: state.dataSource
+    };
+};
 
-export default withRouter(Form.create()(IssueToken))
+const mapDispatch = dispatch => {
+    return {
+        DataToLocalStorage: (values) => dispatch(DataToLocalStorage(values))
+    };
+}
+
+export default connect(
+    mapState,
+    mapDispatch
+)(withRouter(Form.create()(IssueToken)))
+
+
