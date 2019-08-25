@@ -17,41 +17,12 @@ export const getFromLocalStorage = data => ({
     dataSource: data
 });
 
-// THUNK MIDDLEWARE
-// export const DataToLocalStorage = (values) => {
-//     return dispatch => {
-//         const { TokenName, TokenTicker, TotalSupply, IssuerName, Template, Country } = values;
-
-//         localStorage.setItem('TokenName', TokenName)
-//         localStorage.setItem('TokenTicker', TokenTicker)
-//         localStorage.setItem('TotalSupply', TotalSupply)
-//         localStorage.setItem('IssuerName', IssuerName)
-//         localStorage.setItem('Template', Template)
-//         localStorage.setItem('Country', Country)
-
-//         dispatch(setToLocalStorage(values));
-//     };
-// }
-
-// export const DataFromLocalStorage = (values) => {
-//     return dispatch => {
-
-//         localStorage.getItem('TokenName')
-//         localStorage.getItem('TokenTicker')
-//         localStorage.getItem('TotalSupply')
-//         localStorage.getItem('IssuerName')
-//         localStorage.getItem('Template')
-//         localStorage.getItem('Country')
-
-//         dispatch(setToLocalStorage(values));
-//     };
-// }
-
 export const addNewIssues = data => ({
     type: "SET_DATA_SOURCE",
     payload: { data }
 });
 
+//REDUCER
 const dataReducer = (state = initialState, action) => {
     console.log("-------------");
     switch (action.type) {

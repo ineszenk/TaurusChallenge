@@ -12,17 +12,17 @@ let creationDate = new Date().toLocaleDateString()
 const columns = [
     {
         title: 'Token name',
-        dataIndex: 'tokenName',
+        dataIndex: 'TokenName',
         key: 'tokenName',
     },
     {
         title: 'Token ticker',
-        dataIndex: 'tokenTicker',
+        dataIndex: 'TokenTicker',
         key: 'tokenTicker',
     },
     {
         title: 'Total supply',
-        dataIndex: 'totalSupply',
+        dataIndex: 'TotalSupply',
         key: 'totalSupply',
     },
     {
@@ -36,12 +36,12 @@ const columns = [
     },
     {
         title: 'Issuer name',
-        dataIndex: 'issuerName',
+        dataIndex: 'IssuerName',
         key: 'issuerName',
     },
     {
         title: 'Template',
-        dataIndex: 'template',
+        dataIndex: 'Template',
         key: 'template',
     },
     {

@@ -122,11 +122,6 @@ const mapState = state => {
     };
 };
 
-// const mapDispatch = dispatch => {
-//   return {
-//     DataToLocalStorage: values => dispatch(addNewIssues(values))
-//   };
-// };
 
 const mapDispatchToProps = {
     DataToLocalStorage: addNewIssues
