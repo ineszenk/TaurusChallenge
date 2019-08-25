@@ -3,44 +3,45 @@ import TokenTable from './TokenTable'
 import '../App.css';
 import 'antd/dist/antd.css'
 import 'antd/lib/button/style'
-import { Layout, Button, Input, Icon } from 'antd'
-const { Header, Footer, Sider, Content } = Layout
-const { Search } = Input;
+import { Layout } from 'antd'
+import { connect } from "react-redux";
+const { Header, Sider, Content } = Layout
 
 
-
-function searchingFor(term) {
-  return function (x) {
-    return x.tokenName.toLowerCase().include(term.toLowerCase()) || !term
-  }
-}
 
 
 class TokenList extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      dataSource: localStorage.getItem('all'),
-      term: ''
+      searchWord: '',
+      hideResults: true
     }
 
-    this.issueToken = this.issueToken.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
 
 
-  issueToken() {
-    this.props.history.push("/IssueToken")
-  }
+
 
   handleSearch(event) {
-    this.setState({ term: event.target.value })
+    this.setState({
+      searchWord: event.target.value,
+      hideResults: false
+    })
+  }
+
+  handleBlur() {
+    console.log('ouiii')
+    this.setState({
+      hideResults: true
+    })
   }
 
   render() {
-    console.log(localStorage.getItem('all'))
     return (
       <div className="App">
         <header className="header">
@@ -55,18 +56,10 @@ class TokenList extends React.Component {
                 <h1>Token List</h1>
               </Header>
               <div>
-                <Content className="App-Content">
-                  <Search
-                    placeholder="Contract name or address or ticker"
-                    onSearch={value => console.log(value)}
-                    style={{ margin: '10px 0' }}
-                  />
-                  <Button type="primary" className="IssueToken" onClick={this.issueToken}>Issue Token</Button>
-                  <Button type="primary" icon="download" className="Export">Export To CSV</Button>
+                <Content >
+                  <TokenTable />
                 </Content>
-                <TokenTable />
               </div>
-              <Footer className="App-Footer">Footer</Footer>
             </Layout>
           </Layout>
         </header>
@@ -75,4 +68,10 @@ class TokenList extends React.Component {
   }
 }
 
-export default TokenList;
+const mapStateToProps = state => ({
+  dataSource: state.dataSource
+})
+
+
+
+export default connect(mapStateToProps)(TokenList);

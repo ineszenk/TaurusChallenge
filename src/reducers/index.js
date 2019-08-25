@@ -7,7 +7,6 @@ import { combineReducers } from 'redux'
 /*
   Reducers
  */
-import appReducer from './itemSearched'
 import dataSource from './dataSource'
 
 /**
@@ -15,7 +14,7 @@ import dataSource from './dataSource'
  * @typedef {Function} appReducer
  */
 const Reducers = combineReducers({
-    appReducer, dataSource
+    dataSource
 })
 
 export default Reducers
