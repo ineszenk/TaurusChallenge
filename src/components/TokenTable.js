@@ -2,9 +2,14 @@ import React from 'react';
 import '../App.css';
 import 'antd/dist/antd.css'
 import 'antd/lib/button/style'
-import { Table, Icon } from 'antd'
+import { Table, Icon, Button } from 'antd'
 
 const dataSource = []
+
+function removeItem(bodyRow) {
+    localStorage.removeItem(bodyRow)
+    console.log('here')
+}
 
 const columns = [
     {
@@ -41,7 +46,9 @@ const columns = [
         title: 'Action',
         key: 'action',
         render: () => (
-            <Icon type="delete" color='green' />
+            <Button onClick={removeItem}>
+                <Icon type="delete" color='green' />
+            </Button>
         ),
     }
 ];
@@ -59,6 +66,7 @@ class TokenTable extends React.Component {
         const template = localStorage.getItem('Template')
 
         dataSource.push({ tokenName, tokenTicker, totalSupply, issuerName, creationDate, template })
+        this.setState((state) => { return { dataSource } });
     }
 
 
