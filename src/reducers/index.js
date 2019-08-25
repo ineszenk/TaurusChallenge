@@ -1,20 +1,19 @@
 /**
- * Dependencies
+ * DEPENDENCIES
  */
-import { combineReducers } from 'redux'
-
+import { combineReducers } from 'redux';
 
 /*
-  Reducers
+  REDUCERS
  */
-import dataSource from './dataSource'
+import dataSource from './dataSource';
 
 /**
- * App Reducer
+ * APP REDUCER
  * @typedef {Function} appReducer
  */
 const Reducers = combineReducers({
-    dataSource
-})
+	dataSource
+});
 
-export default Reducers
+export default Reducers;
