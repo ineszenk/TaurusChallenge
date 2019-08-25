@@ -31,20 +31,7 @@ export const DataToLocalStorage = (values) => {
     };
 }
 
-export const DataFromLocalStorage = (values) => {
-    return dispatch => {
 
-        localStorage.getItem('TokenName')
-        localStorage.getItem('TokenTicker')
-        localStorage.getItem('TotalSupply')
-        localStorage.getItem('IssuerName')
-        localStorage.getItem('Template')
-        localStorage.getItem('Country')
-
-
-        dispatch(setToLocalStorage(values));
-    };
-}
 
 const dataReducer = (state = initialState, action) => {
     switch (action.type) {
