@@ -2,12 +2,12 @@ import React from 'react';
 import '../App.css';
 import 'antd/dist/antd.css'
 import 'antd/lib/button/style'
-
+import { connect } from "react-redux";
 
 import { Table, Icon, Button } from 'antd'
 
-// const dataSource = []
 
+let creationDate = new Date().toLocaleDateString()
 
 const columns = [
     {
@@ -27,8 +27,12 @@ const columns = [
     },
     {
         title: 'Creation date',
-        dataIndex: 'creationDate',
         key: 'creationDate',
+        render: () => (
+            <div>
+                {creationDate}
+            </div>
+        )
     },
     {
         title: 'Issuer name',
@@ -51,35 +55,23 @@ const columns = [
     }
 ];
 
-// let creationDate = new Date().toLocaleDateString()
+
 
 
 class TokenTable extends React.Component {
-
-    // async componentDidMount() {
-
-    //     const tokenName = localStorage.getItem('TokenName')
-    //     const tokenTicker = localStorage.getItem('TokenTicker')
-    //     const totalSupply = localStorage.getItem('TotalSupply')
-    //     const issuerName = localStorage.getItem('IssuerName')
-    //     const template = localStorage.getItem('Template')
-
-    //     dataSource.push({ tokenName, tokenTicker, totalSupply, issuerName, creationDate, template })
-    //     this.setState((state) => { return { dataSource } });
-
-    // }
-
-
     render() {
-        console.log(this.props.dataSource, 'PROPS')
+        const dataSource = this.props.dataSource.dataSource
+
         return (
             <div>
-                <Table rowKey={dataSource => dataSource.uid} dataSource={this.props.dataSource} columns={columns} />
+                <Table rowKey={dataSource => dataSource.uid} dataSource={dataSource} columns={columns} />
             </div>
         );
     }
 }
 
+const mapStateToProps = state => ({ dataSource: state.dataSource })
 
 
-export default TokenTable
+
+export default connect(mapStateToProps)(TokenTable)

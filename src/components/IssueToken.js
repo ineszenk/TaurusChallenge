@@ -1,47 +1,41 @@
-import React from 'react';
-import {
-    withRouter
-} from 'react-router-dom'
-import '../App.css';
-import 'antd/dist/antd.css'
-import 'antd/lib/button/style'
-import { Form, Select, Input, Button, InputNumber } from 'antd';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import "../App.css";
+import "antd/dist/antd.css";
+import "antd/lib/button/style";
+import { Form, Select, Input, Button, InputNumber } from "antd";
 import { connect } from "react-redux";
-import {
-    DataToLocalStorage
-} from "../reducers/dataSource";
+import { addNewIssues } from "../reducers/dataSource";
 
 const { Option } = Select;
-
 
 class IssueToken extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             countries: []
-        }
+        };
     }
 
     componentDidMount() {
-        fetch('https://restcountries.eu/rest/v2/all')
+        fetch("https://restcountries.eu/rest/v2/all")
             .then(res => res.json())
-            .then((data) => {
-                this.setState({ countries: data })
+            .then(data => {
+                this.setState({ countries: data });
             })
-            .catch(console.log)
+            .catch(console.log);
     }
 
     handleSubmit = e => {
-        console.log(this.props.form)
+        console.log(this.props.form);
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                this.props.DataToLocalStorage(values)
-                this.props.history.push("/TokenList")
+                console.log("Received values of form: ", values);
+                this.props.DataToLocalStorage(values);
+                this.props.history.push("/TokenList");
             }
         });
-
     };
 
     handleSelectChange = () => {
@@ -55,47 +49,60 @@ class IssueToken extends React.Component {
         ));
 
         return (
-            <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }} onSubmit={this.handleSubmit}>
+            <Form
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 12 }}
+                onSubmit={this.handleSubmit}
+            >
                 <Form.Item label="Token Name">
-                    {getFieldDecorator('TokenName', {
-                        rules: [{ required: true, message: 'Please input the token name!' }],
+                    {getFieldDecorator("TokenName", {
+                        rules: [{ required: true, message: "Please input the token name!" }]
                     })(<Input />)}
                 </Form.Item>
                 <Form.Item label="Token Ticker">
-                    {getFieldDecorator('TokenTicker', {
-                        rules: [{ required: true, message: 'Please input the token ticker!' }],
+                    {getFieldDecorator("TokenTicker", {
+                        rules: [
+                            { required: true, message: "Please input the token ticker!" }
+                        ]
                     })(<Input />)}
                 </Form.Item>
                 <Form.Item label="Total Supply">
-                    {getFieldDecorator('TotalSupply', { initialValue: 0, rules: [{ required: true, message: 'Please input the total supply!' }] })(<InputNumber min={0} />)}
+                    {getFieldDecorator("TotalSupply", {
+                        initialValue: 0,
+                        rules: [
+                            { required: true, message: "Please input the total supply!" }
+                        ]
+                    })(<InputNumber min={0} />)}
                 </Form.Item>
                 <Form.Item label="Issuer Name">
-                    {getFieldDecorator('IssuerName', {
-                        rules: [{ required: true, message: 'Please input the issuer name!' }],
+                    {getFieldDecorator("IssuerName", {
+                        rules: [
+                            { required: true, message: "Please input the issuer name!" }
+                        ]
                     })(<Input />)}
                 </Form.Item>
                 <Form.Item label="Template">
-                    {getFieldDecorator('Template', {
-                        rules: [{ required: true, message: 'Please select the template!' }],
+                    {getFieldDecorator("Template", {
+                        rules: [{ required: true, message: "Please select the template!" }]
                     })(
                         <Select
                             placeholder="Select a template"
                             onChange={this.handleSelectChange}
                         >
                             <Option value="ERC20">ERC20</Option>
-                        </Select>,
+                        </Select>
                     )}
                 </Form.Item>
                 <Form.Item label="Country">
-                    {getFieldDecorator('Country', {
-                        rules: [{ required: true, message: 'Please select the country!' }],
+                    {getFieldDecorator("Country", {
+                        rules: [{ required: true, message: "Please select the country!" }]
                     })(
                         <Select
                             placeholder="Select a country"
                             onChange={this.handleSelectChange}
                         >
                             {listCountries}
-                        </Select>,
+                        </Select>
                     )}
                 </Form.Item>
                 <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
@@ -109,21 +116,23 @@ class IssueToken extends React.Component {
 }
 
 const mapState = state => {
-    console.log(state, 'state');
+    console.log(state, "state");
     return {
         dataSource: state.dataSource
     };
 };
 
-const mapDispatch = dispatch => {
-    return {
-        DataToLocalStorage: (values) => dispatch(DataToLocalStorage(values))
-    };
-}
+// const mapDispatch = dispatch => {
+//   return {
+//     DataToLocalStorage: values => dispatch(addNewIssues(values))
+//   };
+// };
+
+const mapDispatchToProps = {
+    DataToLocalStorage: addNewIssues
+};
 
 export default connect(
     mapState,
-    mapDispatch
-)(withRouter(Form.create()(IssueToken)))
-
-
+    mapDispatchToProps
+)(withRouter(Form.create()(IssueToken)));
