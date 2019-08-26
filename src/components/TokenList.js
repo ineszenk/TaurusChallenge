@@ -3,7 +3,7 @@ import TokenTable from './TokenTable';
 import '../App.css';
 import 'antd/dist/antd.css';
 import 'antd/lib/button/style';
-import { Layout, Button } from 'antd';
+import { Layout, Button, Menu } from 'antd';
 import { connect } from 'react-redux';
 const { Header, Sider, Content } = Layout;
 
@@ -22,8 +22,16 @@ class TokenList extends React.Component {
 					<Layout>
 						<Sider width="25%" className="App-Sider">
 							<img id="taurus_logo" alt="logo" src="/taurus_logo.png" />
-							<h5>+ Issue Token </h5>
-							<h5> Token List</h5>
+							<div>
+								<Menu theme="dark" mode="inline" defaultSelectedKeys={[ '1' ]}>
+									<Menu.Item key="1">
+										<span>+ Issue Token</span>
+									</Menu.Item>
+									<Menu.Item key="2">
+										<span>Token List</span>
+									</Menu.Item>
+								</Menu>
+							</div>
 						</Sider>
 						<Layout>
 							<Header className="App-Header" width="75%">
