@@ -28,10 +28,9 @@ const dataReducer = (state = initialState, action) => {
 			};
 		case DELETE_TOKEN:
 			console.log(state.dataSource, action);
-
 			return {
 				...state,
-				dataSource: [ ...state.dataSource, { ...action.payload.data, key: state.dataSource.length + 1 } ]
+				dataSource: state.dataSource.filter((data) => data.key !== action.payload.key)
 			};
 
 		default:
