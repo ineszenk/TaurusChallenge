@@ -4,7 +4,6 @@ import 'antd/dist/antd.css';
 import 'antd/lib/button/style';
 import { connect } from 'react-redux';
 import { deleteToken } from '../reducers/dataSource';
-
 import { Table, Icon, Button, Input } from 'antd';
 const { Search } = Input;
 

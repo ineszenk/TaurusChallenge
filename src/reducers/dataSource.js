@@ -21,13 +21,11 @@ export const deleteToken = (key) => ({
 const dataReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_DATA_SOURCE:
-			console.log(state.dataSource, action);
 			return {
 				...state,
 				dataSource: [ ...state.dataSource, { ...action.payload.data, key: state.dataSource.length + 1 } ]
 			};
 		case DELETE_TOKEN:
-			console.log(state.dataSource, action);
 			return {
 				...state,
 				dataSource: state.dataSource.filter((data) => data.key !== action.payload.key)

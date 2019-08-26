@@ -96,14 +96,10 @@ class IssueToken extends React.Component {
 	}
 }
 
-const mapState = (state) => {
-	return {
-		dataSource: state.dataSource
-	};
-};
+const mapStateToProps = (state) => ({ dataSource: state.dataSource });
 
 const mapDispatchToProps = {
 	DataToLocalStorage: addNewIssues
 };
 
-export default connect(mapState, mapDispatchToProps)(withRouter(Form.create()(IssueToken)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form.create()(IssueToken)));
