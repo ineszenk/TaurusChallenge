@@ -40,8 +40,8 @@ class TokenTable extends React.Component {
 		this.props.history.push('/IssueToken');
 	}
 
-	deleteRow(key) {
-		this.props.deleteFromLocalStorage(key);
+	deleteRow(IssuerName) {
+		this.props.deleteFromLocalStorage(IssuerName);
 	}
 
 	render() {
@@ -120,7 +120,7 @@ const mapStateToProps = (state) => ({ dataSource: state.dataSource });
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		deleteFromLocalStorage: (key) => dispatch(deleteToken(key))
+		deleteFromLocalStorage: (IssuerName) => dispatch(deleteToken(IssuerName))
 	};
 };
 

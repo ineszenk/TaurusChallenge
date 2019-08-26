@@ -88,7 +88,7 @@ class IssueToken extends React.Component {
 				</Form.Item>
 				<Form.Item wrapperCol={{ span: 12, offset: 5 }}>
 					<Button type="primary" htmlType="submit">
-						Submit
+						Issue Token
 					</Button>
 				</Form.Item>
 			</Form>

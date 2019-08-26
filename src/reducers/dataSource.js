@@ -12,9 +12,9 @@ export const addNewIssues = (data) => ({
 	payload: { data }
 });
 
-export const deleteToken = (data) => ({
+export const deleteToken = (key) => ({
 	type: 'DELETE_TOKEN',
-	payload: { data }
+	payload: { key }
 });
 
 //REDUCER
@@ -24,15 +24,16 @@ const dataReducer = (state = initialState, action) => {
 			console.log(state.dataSource, action);
 			return {
 				...state,
-				dataSource: [ ...state.dataSource, action.payload.data ]
+				dataSource: [ ...state.dataSource, { ...action.payload.data, key: state.dataSource.length + 1 } ]
 			};
 		case DELETE_TOKEN:
 			console.log(state.dataSource, action);
 
 			return {
 				...state,
-				dataSource: state.dataSource.filter((data) => data.key !== action.key)
+				dataSource: [ ...state.dataSource, { ...action.payload.data, key: state.dataSource.length + 1 } ]
 			};
+
 		default:
 			return state;
 	}
